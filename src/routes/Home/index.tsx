@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TextInput, View, StyleSheet, SafeAreaView, Platform} from 'react-native';
+import {Text, TextInput, View, StyleSheet, SafeAreaView, Platform, TouchableOpacity} from 'react-native';
 
 interface Props {}
 
@@ -9,12 +9,9 @@ export default function Home({}: Props) {
       <View style={styles.container}>
         <Text style={styles.title}>Welcome, Dev!</Text>
         <TextInput style={styles.input}/>
-        {
-          Platform.OS === "ios" ?
-          <Text>Logado de um Iphone</Text>
-          :
-          <Text>Logado de um Android</Text>
-        }
+        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+          <Text style={styles.buttonText}>Adicionar</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -40,8 +37,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#29292e",
     color: "#f1f1f1",
     fontSize: 18,
-    padding: Platform.OS === 'ios' ? 15 : 10,
+    padding: Platform.OS === 'ios' ? 15 : 12,
     marginTop: 30,
     borderRadius: 7
+  },
+  button: {
+    backgroundColor: "#eba417",
+    padding: Platform.OS === 'ios' ? 15 : 12,
+    borderRadius: 7,
+    alignItems: 'center',
+    marginTop: 20
+  },
+  buttonText: {
+    color: '#121214',
+    fontSize: 18,
+    fontWeight: 'bold',
   }
 });
