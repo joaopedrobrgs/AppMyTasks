@@ -8,10 +8,11 @@ export default function Home({}: Props) {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Welcome, Dev!</Text>
-        <TextInput style={styles.input}/>
+        <TextInput style={styles.input} placeholder='Nova tarefa...' placeholderTextColor='#555'/>
         <TouchableOpacity activeOpacity={0.7} style={styles.button}>
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
+        <Text style={styles.titleDesks}>Minhas tarefas</Text>
       </View>
     </SafeAreaView>
   );
@@ -32,6 +33,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
+  },
+  titleDesks: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginVertical: 30
   },
   input: {
     backgroundColor: "#29292e",
