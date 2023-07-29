@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import {Text, TextInput, View, StyleSheet, SafeAreaView, Platform} from 'react-native';
 
 interface Props {}
 
@@ -8,6 +8,13 @@ export default function Home({}: Props) {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Welcome, Dev!</Text>
+        <TextInput style={styles.input}/>
+        {
+          Platform.OS === "ios" ?
+          <Text>Logado de um Iphone</Text>
+          :
+          <Text>Logado de um Android</Text>
+        }
       </View>
     </SafeAreaView>
   );
@@ -29,4 +36,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  input: {
+    backgroundColor: "#29292e",
+    color: "#f1f1f1",
+    fontSize: 18,
+    padding: Platform.OS === 'ios' ? 15 : 10,
+    marginTop: 30,
+    borderRadius: 7
+  }
 });
