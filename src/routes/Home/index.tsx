@@ -11,8 +11,23 @@ import {
 
 interface Props {}
 
+interface Task {
+  id: string;
+  text: string;
+}
+
 export default function Home({}: Props) {
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState('');
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const handleAddNewTask = (e: any): void => {
+    const data: Task = {
+      id: String(new Date().getTime()),
+      text: !!newTask ? newTask : 'Task empty',
+    };
+    setTasks([...tasks, data]);
+    setNewTask('');
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -22,15 +37,23 @@ export default function Home({}: Props) {
           style={styles.input}
           placeholder="Nova tarefa..."
           placeholderTextColor="#555"
-          value={newTask || ""}
-          // onChange={(e:any):void => {setNewTask(e.target.value)}}
+          value={newTask || ''}
           onChangeText={setNewTask}
         />
-        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.button}
+          onPress={handleAddNewTask}>
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
         <Text style={styles.titleDesks}>Minhas tarefas</Text>
-        <Text style={{color: "white"}}>{newTask}</Text>
+        {tasks.map(task => (
+          <TouchableOpacity key={task.id} style={styles.buttonTask}>
+            <Text style={styles.titleTask}>
+              {task.text}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -78,4 +101,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  buttonTask: {
+    backgroundColor: '#29292e',
+    padding: Platform.OS === 'ios' ? 13 : 10,
+    marginTop: 10,
+    borderRadious: 50,
+    alignItems: 'center'
+  },
+  titleTask: {
+    color: '#f1f1f1',
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
 });
