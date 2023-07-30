@@ -14,7 +14,7 @@ import {
 type Props = {}
 
 //Interfaces:
-import Task from '../../interfaces/Task';
+import Task from '../../types/Task';
 
 //Components:
 import TaskList from '../../components/TaskList';

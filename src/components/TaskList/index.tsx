@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
 //Interfaces:
-import Task from '../../interfaces/Task';
+import Task from '../../types/Task';
 
 type Props = {
   tasks: Task[]
