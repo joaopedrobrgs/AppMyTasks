@@ -1,4 +1,6 @@
+import Task from "../types/Task"
+
 export default interface ITasksContext {
-  id: string;
-  text: string;
+  tasks: Task[],
+  addTask(newTask: Task): void
 }

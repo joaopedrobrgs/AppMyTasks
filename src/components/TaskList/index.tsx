@@ -4,11 +4,13 @@ import { FlatList, TouchableOpacity, Text, StyleSheet, Platform } from 'react-na
 //Types:
 import Task from '../../types/Task';
 
-type Props = {
-  tasks: Task[]
-}
+//Contexts:
+import { useTasksContext } from '../../context/TasksContext';
 
-const TaskList = ({tasks}: Props) => {
+const TaskList = () => {
+
+  const {tasks} = useTasksContext();
+
   return (
     <FlatList
     data={tasks}

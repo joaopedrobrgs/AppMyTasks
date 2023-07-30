@@ -18,24 +18,23 @@ import Task from '../../types/Task';
 import TaskList from '../../components/TaskList';
 
 //Contexts:
-// import { useTasksContext } from '../../context/TasksContext';
+import { useTasksContext } from '../../context/TasksContext';
 
-type Props = {}
+export default function Home() {
 
-export default function Home({}: Props) {
   const [newTask, setNewTask] = useState('');
-  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const {tasks, addTask} = useTasksContext();
 
   const handleAddNewTask = (e: any): void => {
     const data: Task = {
       id: String(new Date().getTime()),
       text: !!newTask ? newTask : 'Task empty',
     };
-    setTasks([...tasks, data]);
+    // setTasks([...tasks, data]);
+    addTask(data)
     setNewTask('');
   };
-
-  // const {id, text} = useTasksContext();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -55,7 +54,7 @@ export default function Home({}: Props) {
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
         <Text style={styles.titleDesks}>Minhas tarefas</Text>
-        <TaskList tasks={tasks}/>
+        <TaskList />
       </View>
     </SafeAreaView>
   );
