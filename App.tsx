@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./src/routes/Home";
+import Home from "./src/screens/Home";
 
 export default function App() {
   return (
