@@ -11,13 +11,16 @@ import {
   FlatList,
 } from 'react-native';
 
-type Props = {}
-
-//Interfaces:
+//Types:
 import Task from '../../types/Task';
 
 //Components:
 import TaskList from '../../components/TaskList';
+
+//Contexts:
+// import { useTasksContext } from '../../context/TasksContext';
+
+type Props = {}
 
 export default function Home({}: Props) {
   const [newTask, setNewTask] = useState('');
@@ -31,6 +34,8 @@ export default function Home({}: Props) {
     setTasks([...tasks, data]);
     setNewTask('');
   };
+
+  // const {id, text} = useTasksContext();
 
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-//Interfaces:
+//Types:
 import Task from '../../types/Task';
 
 type Props = {
