@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   Platform,
   TouchableOpacity,
+  ScrollView,
+  FlatList,
 } from 'react-native';
 
 interface Props {}
@@ -47,13 +49,24 @@ export default function Home({}: Props) {
           <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
         <Text style={styles.titleDesks}>Minhas tarefas</Text>
-        {tasks.map(task => (
-          <TouchableOpacity key={task.id} style={styles.buttonTask}>
-            <Text style={styles.titleTask}>
-              {task.text}
-            </Text>
-          </TouchableOpacity>
-        ))}
+
+        {/* <ScrollView>
+          {tasks.map(task => (
+            <TouchableOpacity key={task.id} style={styles.buttonTask}>
+              <Text style={styles.titleTask}>{task.text}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView> */}
+
+        <FlatList
+          data={tasks}
+          keyExtractor={(item, index) => item.id}
+          renderItem={({item, index}) => (
+            <TouchableOpacity style={styles.buttonTask}>
+              <Text style={styles.titleTask}>Tarefa {index+1}: {item.text}</Text>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </SafeAreaView>
   );
@@ -106,11 +119,11 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 13 : 10,
     marginTop: 10,
     borderRadious: 50,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleTask: {
     color: '#f1f1f1',
     fontSize: 20,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
