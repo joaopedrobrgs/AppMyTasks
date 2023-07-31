@@ -33,14 +33,6 @@ const TasksContextProvider: React.FunctionComponent<Props> = ({children}: Props)
     loadTasks();
   }, [])
 
-  //Forma alternativa de modificar o dado no AsyncStorage:
-  // useEffect(()=>{
-  //   async function saveTasks(){
-  //     await AsyncStorage.setItem(tasksData, JSON.stringify(tasks))
-  //   }
-  //   saveTasks();
-  // }, [tasks])
-
   //Função de adicionar tarefa ao array de tarefas e salvar resultado no AsyncStorage:
   ////Essa função será disparada quando o botão adicionar for clicado
   const addTask = async (newTask: Task): Promise<void> => {
@@ -54,11 +46,27 @@ const TasksContextProvider: React.FunctionComponent<Props> = ({children}: Props)
     }
   }
 
+  //Função de remover tarefa ao array de tarefas e salvar resultado no AsyncStorage:
+  ////Essa função será disparada quando a tarefa for clicada de forma longa
+  const removeTask = async(id: string): Promise<void> => {
+    try{
+      const newTasksList = tasks.filter((task)=>{
+        return task.id !== id
+      })
+      setTasks(newTasksList);
+      AsyncStorage.setItem(tasksData, JSON.stringify(newTasksList))
+    }
+    catch(error){
+      throw new Error;
+    }
+  }
+
   return (
     <TasksContext.Provider
       value = {{
       tasks,
-      addTask
+      addTask,
+      removeTask
     }}
     >
       {children}
