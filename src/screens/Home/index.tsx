@@ -24,14 +24,13 @@ export default function Home() {
 
   const [newTask, setNewTask] = useState('');
 
-  const {tasks, addTask} = useTasksContext();
+  const {addTask} = useTasksContext();
 
   const handleAddNewTask = (e: any): void => {
     const data: Task = {
       id: String(new Date().getTime()),
       text: !!newTask ? newTask : 'Task empty',
     };
-    // setTasks([...tasks, data]);
     addTask(data)
     setNewTask('');
   };

@@ -1,9 +1,6 @@
 import React from 'react'
 import { FlatList, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-//Types:
-import Task from '../../types/Task';
-
 //Contexts:
 import { useTasksContext } from '../../context/TasksContext';
 
